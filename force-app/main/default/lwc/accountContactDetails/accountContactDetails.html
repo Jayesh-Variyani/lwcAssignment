@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Account Detail Section" icon-name="standard:account">
+        <lightning-button-icon icon-name="utility:refresh" title="Refresh" alternative-text="Refresh" onclick={handleRefresh} slot="actions"></lightning-button-icon>
+        <template for:each={fieldValues} for:item="value">
+                <p key={value} class="slds-p-horizontal_small">{value}</p>
+        </template>
+            <p class="slds-p-horizontal_small">Total number of Contacts: {totalContacts}</p>
+    </lightning-card>
+    <lightning-accordion allow-multiple-sections-open class="example-accordion" onsectiontoggle={handleToggleSection}>
+        <lightning-accordion-section name="custsuccess" label="Customer Success">
+            <lightning-datatable data={customerSuccessData} columns={columns} key-field="Id" hide-checkbox-column>
+            </lightning-datatable>
+        </lightning-accordion-section>
+        <lightning-accordion-section name="appdev" label="Application Developer" >
+            <lightning-datatable data={applicationDeveloperData} columns={columns} key-field="Id" hide-checkbox-column>
+            </lightning-datatable>
+        </lightning-accordion-section>
+    </lightning-accordion>
+
+
+</template>
