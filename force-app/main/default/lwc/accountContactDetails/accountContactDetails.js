@@ -17,6 +17,7 @@ export default class AccountContactDetails extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields:'$fieldNameList'})
     wiredAccount(result) {
         this.account = result.data;
+        this.fieldValues = [];
         if (result.data) {
             for (var key in this.fieldNameList) {
                  this.fieldValues.push(getFieldValue(result.data, this.fieldNameList[key]));
@@ -54,6 +55,7 @@ export default class AccountContactDetails extends LightningElement {
 
     connectedCallback() {
         var fieldData = this.FieldNames.length>1?this.FieldNames.split(','):this.FieldNames;
+        this.fieldNameList= [];
         for (var key in fieldData) {
             this.fieldNameList.push('Account.'+fieldData[key]);
         }
